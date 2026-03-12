@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Page Report | Crescimento com autoridade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-base: #f0eadf;
+      --bg-wash: #e7ddcf;
+      --paper: #fffdf9;
+      --paper-soft: #f7f1e7;
+      --ink: #1f1b17;
+      --muted: #60574a;
+      --line: #d4c6b4;
+      --gold: #7a5c34;
+      --gold-soft: #ece0ce;
+      --forest: #1d4f4b;
+      --danger: #7f3f38;
+      --ok: #365a46;
+      --shadow-lg: 0 28px 80px rgba(44, 33, 18, 0.14);
+      --shadow-card: 0 14px 34px rgba(42, 31, 19, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      background:
+        radial-gradient(1400px 800px at 8% -20%, rgba(122, 92, 52, 0.2), transparent 68%),
+        radial-gradient(1200px 700px at 100% 10%, rgba(29, 79, 75, 0.13), transparent 62%),
+        linear-gradient(180deg, var(--bg-base) 0%, var(--bg-wash) 100%);
+    }
+
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 44px 24px 90px;
+      animation: page-in 650ms cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .report {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(122, 92, 52, 0.26);
+      box-shadow: var(--shadow-lg);
+      background: var(--paper);
+      isolation: isolate;
+    }
+
+    .report::before {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      right: -240px;
+      top: -250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122, 92, 52, 0.14) 0%, rgba(122, 92, 52, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero {
+      padding: 46px 44px 30px;
+      background:
+        linear-gradient(130deg, rgba(122, 92, 52, 0.12), rgba(29, 79, 75, 0.08)),
+        repeating-linear-gradient(90deg, rgba(122, 92, 52, 0.04), rgba(122, 92, 52, 0.04) 1px, transparent 1px, transparent 22px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      margin: 0 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 92, 52, 0.25);
+      background: rgba(255, 249, 239, 0.74);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 11.8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(1px);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      max-width: 900px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(33px, 5.3vw, 57px);
+      line-height: 1.04;
+      letter-spacing: -0.028em;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      max-width: 880px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      text-wrap: pretty;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      padding: 30px 44px 44px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, #fffdfa 0%, #fffcf7 100%);
+      box-shadow: var(--shadow-card);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(42, 31, 19, 0.11);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", serif;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: #3f382f;
+      font-size: 15.5px;
+    }
+
+    .thesis {
+      border-color: rgba(122, 92, 52, 0.3);
+      background:
+        linear-gradient(180deg, rgba(122, 92, 52, 0.11), rgba(122, 92, 52, 0.03)),
+        linear-gradient(180deg, #fffdf9 0%, #fcf7ee 100%);
+    }
+
+    .quote {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: 28px;
+      line-height: 1.23;
+      letter-spacing: -0.03em;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 14px;
+      font-family: "Manrope", sans-serif;
+      font-size: 12.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 92, 52, 0.3);
+      background: var(--paper-soft);
+      color: #4f4539;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 12px;
+    }
+
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: #3c342b;
+      font-size: 15px;
+    }
+
+    .num {
+      display: inline-grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(122, 92, 52, 0.3);
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .signal {
+      display: grid;
+      gap: 12px;
+    }
+
+    .signal-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fcf8f1;
+    }
+
+    .signal-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .signal-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .danger {
+      border-left: 4px solid var(--danger);
+    }
+
+    .ok {
+      border-left: 4px solid var(--ok);
+    }
+
+    .footer-note {
+      padding: 0 44px 42px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px dashed rgba(122, 92, 52, 0.28);
+      margin-top: 8px;
+      padding-top: 20px;
+      background:
+        linear-gradient(180deg, rgba(122, 92, 52, 0.04), rgba(122, 92, 52, 0));
+    }
+
+    @media (max-width: 920px) {
+      .wrap {
+        padding: 24px 16px 60px;
+      }
+
+      .hero {
+        padding: 28px 22px 22px;
+      }
+
+      h1 {
+        font-size: clamp(30px, 8.6vw, 44px);
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 22px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .card h2 {
+        font-size: 21px;
+      }
+
+      .quote {
+        font-size: 24px;
+      }
+
+      .footer-note {
+        padding: 16px 22px 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wrap,
+      .card {
+        animation: none;
+        transition: none;
+      }
+    }
+
+    @keyframes page-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="report">
+      <header class="hero">
+        <div class="eyebrow">One Page Report • VM Academy / Escritório no Azul</div>
+        <h1>Escala com autoridade não nasce de pressão constante. Nasce de posicionamento, consistência e maturação de mercado.</h1>
+        <p class="subtitle">
+          Quando o marketing insiste em chamadas repetidas, CTAs contínuos e lançamentos frequentes, pode até gerar movimento no curto prazo, mas também desgasta percepção, banaliza a proposta de valor e enfraquece a sofisticação do produto. Para mentorias premium, o caminho mais sólido parece ser outro: menos ruído, mais inteligência estratégica.
+        </p>
+      </header>
+
+      <section class="grid">
+        <div class="stack">
+          <article class="card thesis">
+            <h2>Tese central</h2>
+            <p class="quote">
+              "Produto premium não deve parecer faminto por atenção. Deve parecer inevitável para o público certo."
+              <small>Princípio orientador para crescimento consistente</small>
+            </p>
+            <div class="pill-row">
+              <span class="pill">Autoridade antes de urgência</span>
+              <span class="pill">Narrativa antes de campanha</span>
+              <span class="pill">Qualidade antes de volume</span>
+              <span class="pill">Médio prazo antes de improviso</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Leitura do problema</h2>
+            <ul class="list">
+              <li><span class="num">1</span><span>O marketing pode estar operando com lógica de tração imediata para um produto que exige confiança, reputação e discernimento do comprador.</span></li>
+              <li><span class="num">2</span><span>Mensagens muito parecidas, repetidas por longos períodos, reduzem percepção de profundidade e passam a sensação de fórmula, não de método vivo.</span></li>
+              <li><span class="num">3</span><span>O público amadureceu. Ele não quer apenas "captar mais"; quer estrutura, previsibilidade, posicionamento, lucro, liderança e clareza para crescer sem caos.</span></li>
+              <li><span class="num">4</span><span>Quando a comunicação sobe de nível, a qualidade do lead sobe junto. E lead melhor melhora SDR, vendas, retenção e indicação.</span></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h2>Direção estratégica sugerida</h2>
+            <ul class="list">
+              <li><span class="num">1</span><span>Construir uma linha editorial de médio prazo, segmentada por maturidade: Silver, Gold e Diamond, com mensagens próprias para cada estágio.</span></li>
+              <li><span class="num">2</span><span>Trocar o excesso de apelos por demonstrações reais de inteligência: casos, raciocínios, bastidores, decisões, erros evitados e critérios da expert.</span></li>
+              <li><span class="num">3</span><span>Posicionar a marca menos como "quem quer vender mentoria" e mais como "quem pensa o setor com profundidade e lidera uma transformação".</span></li>
+              <li><span class="num">4</span><span>Aceitar uma escala mais lenta, porém mais limpa, com maior aderência cultural, melhor ticket percebido e maior potencial de boca a boca qualificado.</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="stack">
+          <article class="card">
+            <h2>Sinais de alerta</h2>
+            <div class="signal">
+              <div class="signal-item danger">
+                <strong>Repetição excessiva de promessa</strong>
+                <span>Quando tudo gira em torno do mesmo discurso, a marca perde refinamento e passa a disputar atenção em terreno comum.</span>
+              </div>
+              <div class="signal-item danger">
+                <strong>Lançamento como vício operacional</strong>
+                <span>Entrar em campanha o tempo todo pode gerar ansiedade interna e sensação externa de urgência fabricada.</span>
+              </div>
+              <div class="signal-item danger">
+                <strong>Teste sem linha mestra</strong>
+                <span>Mudar estratégia toda hora fragiliza posicionamento e impede construção real de memória de marca.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>O que fortalece a marca</h2>
+            <div class="signal">
+              <div class="signal-item ok">
+                <strong>Conteúdo com densidade</strong>
+                <span>Menos isca e mais visão. Menos slogan e mais leitura inteligente do mercado de arquitetura e interiores.</span>
+              </div>
+              <div class="signal-item ok">
+                <strong>Coerência entre produto e comunicação</strong>
+                <span>Uma mentoria de alto valor precisa ser apresentada com calma, critério, sofisticação e convicção.</span>
+              </div>
+              <div class="signal-item ok">
+                <strong>Experiência de jornada</strong>
+                <span>Leads bem nutridos chegam mais conscientes, exigem menos convencimento bruto e fecham melhor.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Frase de decisão</h2>
+            <p>
+              A questão não parece ser "vender menos" nem "abrir mão de performance". A questão parece ser vender de um jeito compatível com a grandeza do método, com o perfil do público e com a reputação que a marca deseja consolidar nos próximos anos.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Este material não conclui o debate; ele organiza a tensão estratégica central: crescer com mais pressão ou crescer com mais autoridade. Para uma marca premium, a segunda via tende a ser mais lenta no início, porém mais consistente, mais respeitada e mais lucrativa no longo prazo.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
